@@ -89,7 +89,7 @@ class EditResContainer extends Component {
     closeModalAndUpdate = async (resToEdit) => {
         try{
             // the fetch
-            const resResponse = await fetch((process.env.REACT_APP_BACKEND, `/api/v1/reservations/${resToEdit._id}`), {
+            const resResponse = await fetch((process.env.REACT_APP_BACKEND, `api/v1/reservations/${resToEdit._id}`), {
                 method: "PUT",
                 body: JSON.stringify(resToEdit),
                 headers: {
@@ -123,7 +123,7 @@ class EditResContainer extends Component {
 
     deleteRes = async (resToDeleteId) => {
         try{
-            const deleteResponse = await fetch((process.env.REACT_APP_BACKEND, `/api/v1/reservations/${resToDeleteId}`), {
+            const deleteResponse = await fetch((process.env.REACT_APP_BACKEND, `api/v1/reservations/${resToDeleteId}`), {
                 method: 'DELETE'
             });
             if(!deleteResponse.ok){

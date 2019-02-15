@@ -31,7 +31,7 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-    const loggedResponse = await fetch(process.env.REACT_APP_BACKEND, '/auth');
+    const loggedResponse = await fetch(process.env.REACT_APP_BACKEND, 'auth');
     if(!loggedResponse.ok){
       throw Error(loggedResponse.statusText);
     }
