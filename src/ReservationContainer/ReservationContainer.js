@@ -35,7 +35,7 @@ class ReservationContainer extends Component {
 
     getRes = async () => {
         try{
-            const response = await fetch(process.env.REACT_APP_BACKEND, 'api/v1/reservations');
+            const response = await fetch(process.env.REACT_APP_BACKEND + 'api/v1/reservations');
             if(!response.ok){
                 throw Error(response.statusText);
             }
@@ -50,7 +50,7 @@ class ReservationContainer extends Component {
 
     addRes = async (res) => {
         try{
-            const resResponse = await fetch((process.env.REACT_APP_BACKEND, 'api/v1/reservations'), {
+            const resResponse = await fetch((process.env.REACT_APP_BACKEND + 'api/v1/reservations'), {
                 method: 'POST',
                 body: JSON.stringify(res),
                 headers: {
