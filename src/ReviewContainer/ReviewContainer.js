@@ -71,6 +71,13 @@ class ReviewContainer extends Component {
             }
             const parsedResponse = await newRevResponse.json();
             console.log(parsedResponse);
+
+            this.setState({
+                reviews: [
+                    ...this.state.reviews,
+                    parsedResponse.data,
+                ]
+            })
         }catch(err){
             console.log(err);
         }
