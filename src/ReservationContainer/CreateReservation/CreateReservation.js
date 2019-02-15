@@ -20,9 +20,24 @@ class CreateReservation extends Component {
     }
 
     componentDidMount = () => {
+        
+        let date2;
+        let dateFinal;
+        if(this.props.targetDate){
+            const date = new Date(this.props.targetDate);
+            const jsonD = date.toJSON();
+            const jsonDArr = jsonD.split('');
+            date2 =  jsonDArr.splice(0, 10);
+            dateFinal = date2.join('');
+        } else {
+            date2 = "there is no date";
+        }
         if(this.props.showCreateModal){
             this.setState({
                 showModal: true,
+                res:{
+                    date: dateFinal,
+                }
             })
         }
     }
@@ -67,17 +82,7 @@ class CreateReservation extends Component {
     }
 
     render(){
-        const date = new Date(this.props.targetDate);
-        const jsonD = date.toJSON();
-        let date2;
-        let dateFinal;
-        if(this.props.targetDate){
-            const jsonDArr = jsonD.split('');
-            date2 =  jsonDArr.splice(0, 10);
-            dateFinal = date2.join('');
-        } else {
-            date2 = "there is no date";
-        }
+        
         return (
             <Modal isOpen={this.state.showModal} className="modal-main">
                 <ModalHeader>Make a new Reservation at Condue</ModalHeader>
@@ -91,7 +96,7 @@ class CreateReservation extends Component {
                             </label><br />
                             <label>
                                 Enter Date:
-                                <input type="date" name="date" onChange={this.handleInput} value={dateFinal}/>
+                                <input type="date" name="date" onChange={this.handleInput} value={this.state.res.date}/>
                             </label><br />
                             <label>
                                 Enter Time:
