@@ -41,7 +41,7 @@ class ReviewContainer extends Component {
 
     getReviews = async () => {
         try{
-            const reviewResponse = await fetch(process.env.REACT_APP_BACKEND + 'api/v1/reviews');
+            const reviewResponse = await fetch(process.env.REACT_APP_BACKEND + 'api/reviews');
             if(!reviewResponse) {
                 throw Error(reviewResponse.statusText);
             }
@@ -59,7 +59,7 @@ class ReviewContainer extends Component {
     newReview = async (e) => {
         e.preventDefault();
         try{
-            const newRevResponse = await fetch((process.env.REACT_APP_BACKEND + 'api/v1/reviews'), {
+            const newRevResponse = await fetch((process.env.REACT_APP_BACKEND + 'api/reviews'), {
                 method: "POST",
                 body: JSON.stringify(this.state.newReview),
                 headers: {
