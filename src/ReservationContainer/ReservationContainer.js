@@ -35,7 +35,7 @@ class ReservationContainer extends Component {
 
     getRes = async () => {
         try{
-            const response = await fetch(process.env.REACT_APP_BACKEND + 'api/reservations');
+            const response = await fetch(process.env.REACT_APP_BACKEND + 'api/reservations/');
             if(!response.ok){
                 throw Error(response.statusText);
             }
@@ -49,8 +49,10 @@ class ReservationContainer extends Component {
     }
 
     addRes = async (res) => {
+        // Ideally reformat date and time for django serializer, for now use reg string
+        console.log(`We are sending this data: ${JSON.stringify(res)}`)
         try{
-            const resResponse = await fetch((process.env.REACT_APP_BACKEND + 'api/reservations'), {
+            const resResponse = await fetch((process.env.REACT_APP_BACKEND + 'api/reservations/'), {
                 method: 'POST',
                 body: JSON.stringify(res),
                 headers: {

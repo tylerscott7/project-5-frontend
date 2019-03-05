@@ -46,7 +46,7 @@ class AdminLoginContainer extends Component {
     checkLogin = async (e) => {
         e.preventDefault();
         console.log('checking credentials...');
-        const loginResponse = await fetch(process.env.REACT_APP_BACKEND + `api/users/login`, {
+        const loginResponse = await fetch(process.env.REACT_APP_BACKEND + `api/users/login/`, {
             method: "POST",
             body: JSON.stringify(this.state.credentials),
             credentials: "include",
@@ -76,7 +76,7 @@ class AdminLoginContainer extends Component {
     newAdminSubmit = async (e) => {
         e.preventDefault();
         try{
-            const newAdminResponse = await fetch(process.env.REACT_APP_BACKEND + 'api/users/register', {
+            const newAdminResponse = await fetch(process.env.REACT_APP_BACKEND + 'api/users/register/', {
                 method: "POST",
                 body: JSON.stringify(this.state.credentials),
                 headers: {

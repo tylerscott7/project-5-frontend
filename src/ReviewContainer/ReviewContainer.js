@@ -35,21 +35,22 @@ class ReviewContainer extends Component {
                 ...this.state.newReview,
                 [e.target.name]: e.target.value,
             }
-            
+        }, () => {
+            console.log(`The new review state is now: ${JSON.stringify(this.state.newReview)}`)
         })
     }
 
     getReviews = async () => {
         try{
-            const reviewResponse = await fetch(process.env.REACT_APP_BACKEND + 'api/reviews');
+            const reviewResponse = await fetch(process.env.REACT_APP_BACKEND + 'api/reviews/');
             if(!reviewResponse) {
                 throw Error(reviewResponse.statusText);
             }
 
             const parsedReviews = await reviewResponse.json();
-            console.log(parsedReviews);
+            console.log(`Django sent these reviews: ${JSON.stringify(parsedReviews)}`);
             this.setState({
-                reviews: parsedReviews.data,
+            reviews: parsedReviews,
             })
         }catch(err){
             console.log(err);
@@ -59,7 +60,7 @@ class ReviewContainer extends Component {
     newReview = async (e) => {
         e.preventDefault();
         try{
-            const newRevResponse = await fetch((process.env.REACT_APP_BACKEND + 'api/reviews'), {
+            const newRevResponse = await fetch((process.env.REACT_APP_BACKEND + 'api/reviews/'), {
                 method: "POST",
                 body: JSON.stringify(this.state.newReview),
                 headers: {
@@ -70,12 +71,12 @@ class ReviewContainer extends Component {
                 throw Error(newRevResponse.statusText);
             }
             const parsedResponse = await newRevResponse.json();
-            console.log(parsedResponse);
+            console.log(`POST request sent back:${JSON.stringify(parsedResponse)}`);
 
             this.setState({
                 reviews: [
                     ...this.state.reviews,
-                    parsedResponse.data,
+                    parsedResponse,
                 ]
             })
         }catch(err){
@@ -86,6 +87,7 @@ class ReviewContainer extends Component {
     render() {
         console.log(this.state);
         const reviewList = this.state.reviews.map((review, i)=>{
+            console.log(`sending state review data of: ${JSON.stringify(review)} to ReviewList`)
             return(
                 <ReviewList key={i} review={review}/>
             )

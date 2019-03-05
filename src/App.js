@@ -31,21 +31,21 @@ class App extends Component {
   }
 
   componentDidMount = async () => {
-    const loggedResponse = await fetch(process.env.REACT_APP_BACKEND + 'api/users');
+    const loggedResponse = await fetch(process.env.REACT_APP_BACKEND + 'api/users/');
     if(!loggedResponse.ok){
       throw Error(loggedResponse.statusText);
     }
 
-    const parsedResponse = await loggedResponse.json();
-    if(parsedResponse.data === "not logged in"){
-      this.setState({
-        logged: false,
-      })
-    }else if (parsedResponse.data.logged) {
-      this.setState({
-        logged: true,
-      })
-    }
+    // const parsedResponse = await loggedResponse.json();
+    // if(parsedResponse.data === "not logged in"){
+    //   this.setState({
+    //     logged: false,
+    //   })
+    // } else if (parsedResponse.data.logged) {
+    //   this.setState({
+    //     logged: true,
+    //   })
+    // }
   }
 
   setTargetDate = (date) => {
