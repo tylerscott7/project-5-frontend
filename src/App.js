@@ -36,16 +36,16 @@ class App extends Component {
       throw Error(loggedResponse.statusText);
     }
 
-    const parsedResponse = await loggedResponse.json();
-    if(parsedResponse.data === "not logged in"){
-      this.setState({
-        logged: false,
-      })
-    } else if (parsedResponse.data.logged) {
-      this.setState({
-        logged: true,
-      })
-    }
+    // const parsedResponse = await loggedResponse.json();
+    // if(parsedResponse.data === "not logged in"){
+    //   this.setState({
+    //     logged: false,
+    //   })
+    // } else if (parsedResponse.data.logged) {
+    //   this.setState({
+    //     logged: true,
+    //   })
+    // }
   }
 
   setTargetDate = (date) => {
